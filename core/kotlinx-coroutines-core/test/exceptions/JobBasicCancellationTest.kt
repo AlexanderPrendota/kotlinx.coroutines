@@ -121,12 +121,10 @@ class JobBasicCancellationTest : TestBase() {
             expect(1)
             val child = Job(coroutineContext[Job])
             expect(2)
-            assertFalse(child.cancel(IOException()))
+            assertFalse(child.cancel())
             child.join()
-            assertTrue(child.getCancellationException().cause is IOException)
             expect(3)
         }
-
         parent.join()
         finish(4)
     }
